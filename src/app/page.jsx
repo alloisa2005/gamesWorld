@@ -14,11 +14,11 @@ export default function Home() {
 
       <Leyenda />
 
-      {/* <Suspense fallback={<div className="bg-black h-40 flex items-center justify-center text-white">
+      <Suspense fallback={<div className="bg-black h-40 flex items-center justify-center text-white">
         <p className="font-montserrat font-bold text-2xl italic">Loading...</p>
       </div>}>
         <FilaJuegos />            
-      </Suspense>       */}
+      </Suspense>      
 
       <Editoriales />
 
