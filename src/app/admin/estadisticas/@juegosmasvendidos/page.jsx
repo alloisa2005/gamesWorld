@@ -13,7 +13,7 @@ const JuegosMasVendidos = async () => {
       </div>
 
       {
-        juegos.map((juego, index) => (
+        juegos && juegos.map((juego, index) => (
           <div key={index} className='flex justify-between border-b-2 py-1 text-gray-500'>
             <p className='italic'>{juego.titulo}</p>
             <p className='font-bold'>{juego.totalVendido}</p>

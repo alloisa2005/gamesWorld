@@ -2,6 +2,7 @@ const { uploadUserImage } = require("../uploadImages");
 
 export const saveUser = async (nombre, email, direccion, password, fileImg) => {
 
+  //TODO: Ver como subir imagen de usuario
   let response = await uploadUserImage(fileImg);
 
   if(response.error){    
