@@ -29,7 +29,7 @@ const AddToCart = ({ game }) => {
   const handleAddToCart = async () => {    
     
     if(!session?.user) {
-      setModal({error: true, msg: "Debes iniciar sesión para poder comprar."});
+      setModal({error: true, msg: "Debes iniciar sesión para poder agregar al carrito."});
       return;
     }    
 
