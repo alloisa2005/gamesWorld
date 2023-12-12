@@ -21,9 +21,7 @@ const Menu = () => {
   const dispatch = useDispatch();
   const { data: session } = useSession();      
 
-  useEffect(() => {
-    dispatch(getAllJuegos())
-    
+  useEffect(() => {        
     if(session?.user?.email) {
       dispatch(getUserCart(session?.user?.email))
       dispatch(getFavoritosByUser(session?.user?.email))

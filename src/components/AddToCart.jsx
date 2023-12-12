@@ -8,30 +8,30 @@ import MiModal from './MiModal';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '@/redux/slices/cartSlice';
 import Spinner from './Spinner';
-import { updateStock } from '@/redux/slices/juegosSlice';
 
 
 const AddToCart = ({ game }) => {  
   const dispatch = useDispatch();
 
-  const { cartLoading } = useSelector(state => state.cart);
-  const { productos, productosLoading } = useSelector(state => state.juegos);
-  const juego = productos.filter( j => j._id === game._id)[0]
-
-  const {data:session} = useSession()      
+  const { cartLoading } = useSelector(state => state.cart);  
+  const {data: session} = useSession()      
   
   const [cantidad, setCantidad] = useState(1);
+  const [juegoStock, setJuegoStock] = useState(game.stock-1);
+
   const [modal, setModal] = useState({error: false, msg: ""});     
 
   const increment = () => {
-    setCantidad(cantidad + 1)    
-    dispatch(updateStock({juegoId: game._id, cant: -1}))
+    if(cantidad < game.stock){  
+      setCantidad(cantidad + 1)
+      setJuegoStock(juegoStock - 1)
+    }
   };
 
   const decrement = () => {
     if(cantidad > 1) {
-      setCantidad(cantidad - 1);      
-      dispatch(updateStock({juegoId: game._id, cant: 1}))
+      setCantidad(cantidad - 1);   
+      setJuegoStock(juegoStock + 1)         
     }
   };
 
@@ -70,10 +70,9 @@ const AddToCart = ({ game }) => {
         </div>
       </div> 
       
-      <div className='py-2 text-center text-gray-500 font-semibold'>
-        Stock: {
-          productosLoading ? <Spinner /> : juego.stock
-        }
+      <div className='py-2 text-center  font-semibold text-gray-500 flex justify-center items-center gap-2'>
+        <p>Stock:</p>
+        <p className='font-bold text-lg'>{juegoStock}</p>        
       </div>
 
       <div onClick={handleAddToCart} className='select-none flex items-center justify-center gap-4 bg-black py-3 text-white mt-2 hover:bg-black/80 hover:cursor-pointer ease-out duration-300'>
