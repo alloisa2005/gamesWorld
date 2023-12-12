@@ -44,6 +44,14 @@ const GameCard = ({ game }) => {
   };
 
   const handleAddToCart = () => {    
+    if(!session?.user) {
+      setModal({
+        error: true,
+        msg: "Debes iniciar sesión para poder agregar al carrito.",
+      });
+      return;
+    }
+
     dispatch(
       addToCart({
         usuarioEmail: session?.user?.email,
