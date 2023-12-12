@@ -16,6 +16,7 @@ export const saveUser = async (nombre, email, direccion, password, fileImg) => {
     headers: {
       "Content-Type": "application/json",
       "Allow-Cross-Origin": "*",
+      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify({
       nombre,
