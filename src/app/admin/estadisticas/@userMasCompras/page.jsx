@@ -16,7 +16,7 @@ const UsersMasCompras = async () => {
 
 
       {
-        users.map((user) => (
+        users && users.map((user) => (
           <div key={user._id} className='grid grid-cols-8 gap-2 text-gray-500 border-b-2 py-1'>
             <p className='col-span-4'>{user.nombre}</p>            
             <p className='col-span-2 text-center'>{user.totalCompras}</p>

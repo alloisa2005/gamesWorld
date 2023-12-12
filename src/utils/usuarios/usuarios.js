@@ -1,8 +1,7 @@
 const { uploadImageToStorage } = require("../uploadImages");
 
-export const saveUser = async (nombre, email, direccion, password, fileImg) => {
+export const saveUser = async (nombre, email, direccion, password, fileImg) => {  
   
-  //let response = await uploadUserImage(fileImg);
   let response = await uploadImageToStorage(fileImg, 'users');
 
   if(response.error){    

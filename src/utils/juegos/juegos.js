@@ -12,8 +12,7 @@ export const getProductos = async (categoria = 'all', nombre='') => {
 };
 
 export const saveProducto = async (titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, boxImage, posterImage, stock) => {  
-
-  //let response = await uploadGameImage(boxImage);
+  
   let response = await uploadImageToStorage(boxImage, 'juegos');
   if(response.error){    
     return {error:true, errorMsg: response.errorMsg, data: ''};
@@ -50,7 +49,7 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
 
 export const getProductoById = async (juegoId) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/productos/detail/${juegoId}`, 
-    {next: {revalidate: 60}}
+    {cache: 'no-store'}
   );
   const data = await response.json();
   return data;

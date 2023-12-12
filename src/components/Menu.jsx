@@ -14,6 +14,7 @@ import { getUserCart } from "@/redux/slices/cartSlice";
 import { getFavoritosByUser } from "@/redux/slices/favoritosSlice";
 import Avatar from "./Avatar";
 import { getUserCompras } from "@/redux/slices/compraSlice";
+import { getAllJuegos } from "@/redux/slices/juegosSlice";
 
 
 const Menu = () => {  
@@ -21,6 +22,8 @@ const Menu = () => {
   const { data: session } = useSession();      
 
   useEffect(() => {
+    dispatch(getAllJuegos())
+    
     if(session?.user?.email) {
       dispatch(getUserCart(session?.user?.email))
       dispatch(getFavoritosByUser(session?.user?.email))

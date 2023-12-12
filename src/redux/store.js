@@ -2,16 +2,16 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { cartSlice } from './slices/cartSlice';
 import { favoritosSlice } from './slices/favoritosSlice';
-import { pruebaSlice } from './slices/pruebaSlice';
 import { compraSlice } from './slices/compraSlice';
+import { juegosSlice } from './slices/juegosSlice';
 
 // create the store
 export const store = configureStore({
   reducer: {        
-    favoritos: favoritosSlice.reducer,
-    prueba: pruebaSlice.reducer,
+    favoritos: favoritosSlice.reducer,    
     cart: cartSlice.reducer,
     compras: compraSlice.reducer,
+    juegos: juegosSlice.reducer,
   },  
 });
 
