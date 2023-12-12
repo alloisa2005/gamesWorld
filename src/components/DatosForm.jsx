@@ -49,7 +49,7 @@ const DatosForm = () => {
         </div>
 
         <div className="flex flex-col mt-10">
-          <label className="font-bold text-md">Dirección</label>
+          <label className="font-bold text-md">Editar Dirección</label>
           <div className="flex items-center justify-between gap-8">
             <input
               value={newDireccion}
