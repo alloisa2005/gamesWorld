@@ -57,8 +57,7 @@ export const getProductosOrdenados = async (filtro) => {
   const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/productos/ordenados/${filtro}`, 
     {next: {revalidate: 180}}  // cada 3 min se actualiza
   );  
-  const data = await response.json();
-  console.log(data)
+  const data = await response.json();  
   return data;
 };
 

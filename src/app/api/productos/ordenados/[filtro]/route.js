@@ -10,8 +10,8 @@ export const GET = async (_, { params }) => {
     
     const juegos =
       filtro === "rating"
-        ? await Juego.find().select('boxImage titulo').sort({ rating: -1 }).limit(4) 
-        : await Juego.find().select('boxImage titulo').sort({ createdAt: -1 }).limit(4)
+        ? await Juego.find().select('boxImage titulo rating').sort({ rating: -1 }).limit(4) 
+        : await Juego.find().select('boxImage titulo rating').sort({ createdAt: -1 }).limit(4)
 
         
     return NextResponse.json(juegos, { status: 201 });
