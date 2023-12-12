@@ -1,4 +1,4 @@
-import { uploadGameImage, uploadImageToStorage } from "../uploadImages";
+import { uploadImageToStorage } from "../uploadImages";
 
 export const getProductos = async (categoria = 'all', nombre='') => {
 
@@ -20,7 +20,7 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
   }  
   const cardImage = response.imgUrl;
 
-  response = await uploadGameImage(posterImage);
+  response = await uploadImageToStorage(posterImage, 'juegos');
   if(response.error){    
     return {error:true, errorMsg: response.errorMsg, data: ''};
   }  
