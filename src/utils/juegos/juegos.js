@@ -1,4 +1,4 @@
-import { uploadGameImage } from "../uploadImages";
+import { uploadGameImage, uploadImageToStorage } from "../uploadImages";
 
 export const getProductos = async (categoria = 'all', nombre='') => {
 
@@ -13,7 +13,8 @@ export const getProductos = async (categoria = 'all', nombre='') => {
 
 export const saveProducto = async (titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating, boxImage, posterImage, stock) => {  
 
-  let response = await uploadGameImage(boxImage);
+  //let response = await uploadGameImage(boxImage);
+  let response = await uploadImageToStorage(boxImage, 'juegos');
   if(response.error){    
     return {error:true, errorMsg: response.errorMsg, data: ''};
   }  

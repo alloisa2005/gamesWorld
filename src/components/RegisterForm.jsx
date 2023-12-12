@@ -89,7 +89,7 @@ export const RegisterForm = () => {
       >
         <div className="flex justify-center">
           <input
-            id="fileInput"
+            id="fileInput"            
             type="file"
             accept="image/*"
             hidden
