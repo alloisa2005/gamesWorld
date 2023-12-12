@@ -30,6 +30,8 @@ export const saveProducto = async (titulo, categoria, precio, descripcion, trail
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      "Allow-Cross-Origin": "*",
+      "Access-Control-Allow-Origin": "*",
     },
     body: JSON.stringify({
       titulo, categoria, precio, descripcion, trailer1, trailer2, trailer3, rating,
