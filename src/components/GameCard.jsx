@@ -43,8 +43,8 @@ const GameCard = ({ game }) => {
     return favoritos.productos.some((producto) => producto._id == gameId);
   };
 
-  const handleAddToCart = () => {    
-    if(!session?.user) {
+  const handleAddToCart = () => {
+    if (!session?.user) {
       setModal({
         error: true,
         msg: "Debes iniciar sesión para poder agregar al carrito.",
@@ -95,11 +95,13 @@ const GameCard = ({ game }) => {
             <p className="text-[14px] font-semibold">
               {cortarTexto(game.titulo, 20)}
             </p>
-            <BsCartPlusFill
-              onClick={handleAddToCart}
-              size={20}
-              className="text-red-400 hover:cursor-pointer hover:text-red-600 ease-in duration-300"
-            />
+            {game.stock > 0 ? (
+              <BsCartPlusFill
+                onClick={handleAddToCart}
+                size={20}
+                className="text-red-400 hover:cursor-pointer hover:text-red-600 ease-in duration-300"
+              />
+            ) : <p className="text-[12px] font-bold">Sin Stock</p>}
           </div>
           <p className="text-sm">
             Plataforma:{" "}

@@ -45,6 +45,12 @@ export const POST = async (req, res) => {
     // Guardar los cambios en el carrito
     await carrito.save();
 
+    // actualizo el stock del producto
+    const juegoEdit = await Juego.findById(productoId);
+    juegoEdit.stock = juegoEdit.stock - cantidad;
+    await juegoEdit.save();
+    
+
     let cartPrueba = await Cart.findOne({ email: usuarioEmail }).populate("productos.producto");
     return NextResponse.json(cartPrueba, { status: 201 });
 
