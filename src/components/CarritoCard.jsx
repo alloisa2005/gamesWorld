@@ -7,10 +7,11 @@ import { separadorMiles } from "@/utils/separadorMiles";
 import { useSession } from "next-auth/react";
 import { useDispatch } from "react-redux";
 import { addToCart, deleteProductFromCart } from "@/redux/slices/cartSlice";
+import { AiOutlineStock } from "react-icons/ai";
 
 const CarritoCard = ({ prod }) => {
   const dispatch = useDispatch();
-  const { data: session } = useSession();
+  const { data: session } = useSession();  
 
   const increment = async () => {
     dispatch(
@@ -51,7 +52,7 @@ const CarritoCard = ({ prod }) => {
           height={100}
           className="w-[70px] object-contain hover:cursor-pointer"
         />
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col">          
           <motion.p
             initial={{ opacity: 0, x: -200 }}
             animate={{ opacity: 1, x: 0 }}
@@ -61,6 +62,10 @@ const CarritoCard = ({ prod }) => {
           >
             {prod.producto.titulo}
           </motion.p>
+          <div className="flex items-center gap-1 mt-1 mb-4">
+            <AiOutlineStock size={22} className=' text-gray-500' />
+            <p className="text-sm text-gray-500">Stock: {prod.producto.stock}</p>          
+          </div>
           <p
             onClick={deleteProd}
             className="italic text-blue-500 hover:font-bold w-fit text-[14px] hover:cursor-pointer ease-in duration-300"
