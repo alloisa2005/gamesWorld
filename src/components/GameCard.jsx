@@ -92,8 +92,8 @@ const GameCard = ({ game }) => {
 
         <div className="px-3 py-2 flex flex-1 flex-col gap-2">
           <div className="flex items-center justify-between">
-            <p className="text-[15px] font-bold">
-              {cortarTexto(game.titulo, 23)}
+            <p className="text-[14px] font-semibold">
+              {cortarTexto(game.titulo, 20)}
             </p>
             <BsCartPlusFill
               onClick={handleAddToCart}
@@ -107,7 +107,7 @@ const GameCard = ({ game }) => {
               {game.categoria.toUpperCase()}
             </span>
           </p>
-          <div className="flex justify-between items-center">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between">
             <p className="text-md font-bold">$ {separadorMiles(game.precio)}</p>
             <RatingBar rating={game.rating} />
           </div>

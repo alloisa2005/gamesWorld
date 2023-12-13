@@ -37,7 +37,7 @@ const GamesList = ({ games, params }) => {
           <IoSearch size={25} />
         </div>    
       </div>
-      <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="p-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-3">
         {games.map((game) => (
           <GameCard key={game._id} game={game} />
         ))}
