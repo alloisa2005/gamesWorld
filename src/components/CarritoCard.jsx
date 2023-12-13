@@ -12,25 +12,30 @@ import { AiOutlineStock } from "react-icons/ai";
 const CarritoCard = ({ prod }) => {
   const dispatch = useDispatch();
   const { data: session } = useSession();  
+  const [juegoStock, setJuegoStock] = useState(prod.producto.stock);  
 
   const increment = async () => {
-    dispatch(
-      addToCart({
-        usuarioEmail: session?.user?.email,
-        productoId: prod.producto._id,
-        cantidad: 1,
-      })
-    );
+    if(prod.producto.stock > 0){
+      dispatch(
+        addToCart({
+          usuarioEmail: session?.user?.email,
+          productoId: prod.producto._id,
+          cantidad: 1,
+        })
+      );
+    }
   };
 
   const decrement = async () => {
-    dispatch(
-      addToCart({
-        usuarioEmail: session?.user?.email,
-        productoId: prod.producto._id,
-        cantidad: -1,
-      })
-    );
+    if(prod.cantidad > 0){
+      dispatch(
+        addToCart({
+          usuarioEmail: session?.user?.email,
+          productoId: prod.producto._id,
+          cantidad: -1,
+        })
+      );
+    }
   };
 
   const deleteProd = async () => {

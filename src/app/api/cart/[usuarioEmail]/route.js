@@ -1,5 +1,6 @@
 import { connectDB } from "@/db/connectDB";
 import Cart from "@/models/cart";
+import Juego from "@/models/juego";
 import { NextResponse } from "next/server";
 
 export const GET = async (_, { params }) => {
@@ -36,6 +37,14 @@ export const DELETE = async (req, { params }) => {
 
   try {
     await connectDB();
+    const cart = await Cart.findOne({ email: usuarioEmail });
+
+    //Recorrer cart.productos y actualizar el stock de cada producto    
+    for (let producto of cart.productos) {
+      const juego = await Juego.findById(producto.producto);
+      juego.stock = juego.stock + producto.cantidad;
+      await juego.save();
+    }
 
     const userCart = await Cart.findOneAndDelete({ email: usuarioEmail });
     return NextResponse.json(userCart, { status: 201 });

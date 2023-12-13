@@ -70,6 +70,7 @@ export const DELETE = async (req, res) => {
 
     // Buscar el carrito del usuario por su email
     let carrito = await Cart.findOne({ email: usuarioEmail });    
+    let cantidadCarrito = 0;
 
     // Verificar si el producto ya está en el carrito
     const productoExistente = carrito.productos.find(
@@ -77,7 +78,9 @@ export const DELETE = async (req, res) => {
     );
 
     // Si el producto ya está en el carrito, eliminarlo
-    if (productoExistente) {      
+    if (productoExistente) {    
+      cantidadCarrito = productoExistente.cantidad;
+
       carrito.productos = carrito.productos.filter(
         (producto) => producto.producto.toString() !== productoId
       );
@@ -95,6 +98,11 @@ export const DELETE = async (req, res) => {
 
     // Guardar los cambios en el carrito
     await carrito.save();
+
+    // actualizo el stock del producto
+    const juegoEdit = await Juego.findById(productoId);
+    juegoEdit.stock = juegoEdit.stock + cantidadCarrito;
+    await juegoEdit.save();
 
     let cartPrueba = await Cart.findOne({ email: usuarioEmail }).populate("productos.producto");
     return NextResponse.json(cartPrueba, { status: 201 });

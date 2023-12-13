@@ -101,7 +101,7 @@ const GameCard = ({ game }) => {
                 size={20}
                 className="text-red-400 hover:cursor-pointer hover:text-red-600 ease-in duration-300"
               />
-            ) : <p className="text-[12px] font-bold">Sin Stock</p>}
+            ) : <p className="text-[12px] font-bold text-red-500">Sin Stock</p>}
           </div>
           <p className="text-sm">
             Plataforma:{" "}
