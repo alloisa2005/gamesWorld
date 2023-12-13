@@ -1,24 +1,34 @@
 "use client";
 
 import { separadorMiles } from "@/utils/separadorMiles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsCartPlusFill } from "react-icons/bs";
 import { useSession } from "next-auth/react";
 import MiModal from "./MiModal";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slices/cartSlice";
 import Spinner from "./Spinner";
+import { useRouter } from "next/navigation";
 
 const AddToCart = ({ game }) => {
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const { cartLoading } = useSelector((state) => state.cart);
   const { data: session } = useSession();
-
+  
   const [cantidad, setCantidad] = useState(0);
-  const [juegoStock, setJuegoStock] = useState(game.stock - cantidad);
-
+  const [juegoStock, setJuegoStock] = useState(0); //useState(game.stock - cantidad);  
   const [modal, setModal] = useState({ error: false, msg: "" });
+  
+  useEffect(() => {
+    const obtenerJuego = async () => {
+      const res = await fetch(`/api/productos/detail/${game._id}`);
+      const data = await res.json();      
+      setJuegoStock(data.stock);
+    };
+    obtenerJuego();
+  }, [game]);
 
   const increment = () => {
     if (cantidad < game.stock) {
@@ -50,6 +60,7 @@ const AddToCart = ({ game }) => {
     };
 
     dispatch(addToCart(cartItem));
+    //router.refresh();
   };
 
   return (

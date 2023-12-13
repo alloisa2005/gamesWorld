@@ -5,7 +5,7 @@ export const getProductos = async (categoria = 'all', nombre='') => {
   const url = nombre === '' ? `${process.env.NEXT_PUBLIC_API_URL}/api/productos/${categoria}` 
                             : `${process.env.NEXT_PUBLIC_API_URL}/api/productos/${categoria}?nombre=${nombre}` 
 
-  const response = await fetch(url,{next: {revalidate: 0}});
+  const response = await fetch(url,{cache: 'no-store'});
   
   const data = await response.json();
   return data;
