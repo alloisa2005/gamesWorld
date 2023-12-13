@@ -8,17 +8,17 @@ import MiModal from "./MiModal";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/redux/slices/cartSlice";
 import Spinner from "./Spinner";
-import { useRouter } from "next/navigation";
+
 
 const AddToCart = ({ game }) => {
-  const dispatch = useDispatch();
-  const router = useRouter();
+  const dispatch = useDispatch();  
 
   const { cartLoading } = useSelector((state) => state.cart);
   const { data: session } = useSession();
   
   const [cantidad, setCantidad] = useState(0);
-  const [juegoStock, setJuegoStock] = useState(0); //useState(game.stock - cantidad);  
+  const [juegoStock, setJuegoStock] = useState(0); 
+  const [stockParcial, setStockParcial] = useState(0);
   const [modal, setModal] = useState({ error: false, msg: "" });
   
   useEffect(() => {
@@ -26,6 +26,7 @@ const AddToCart = ({ game }) => {
       const res = await fetch(`/api/productos/detail/${game._id}`);
       const data = await res.json();      
       setJuegoStock(data.stock);
+      setStockParcial(data.stock);
     };
     obtenerJuego();
   }, [game]);
@@ -33,14 +34,14 @@ const AddToCart = ({ game }) => {
   const increment = () => {
     if (cantidad < juegoStock) {
       setCantidad(cantidad + 1);
-      setJuegoStock(juegoStock - 1);
+      setStockParcial(stockParcial - 1);
     }
   };
 
   const decrement = () => {
     if (cantidad > 0) {
       setCantidad(cantidad - 1);
-      setJuegoStock(juegoStock + 1);
+      setStockParcial(stockParcial + 1);
     }
   };
 
@@ -59,8 +60,7 @@ const AddToCart = ({ game }) => {
       cantidad,
     };
 
-    dispatch(addToCart(cartItem));
-    //router.refresh();
+    dispatch(addToCart(cartItem));    
   };
 
   return (
@@ -94,7 +94,7 @@ const AddToCart = ({ game }) => {
 
       <div className="py-2 text-center  font-semibold text-gray-500 flex justify-center items-center gap-2">
         <p>Stock:</p>
-        <p className="font-bold text-lg">{juegoStock}</p>
+        <p className="font-bold text-lg">{stockParcial}</p>
       </div>
 
       {cantidad > 0 ? (
