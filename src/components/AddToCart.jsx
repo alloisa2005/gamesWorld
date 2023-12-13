@@ -31,7 +31,7 @@ const AddToCart = ({ game }) => {
   }, [game]);
 
   const increment = () => {
-    if (cantidad < game.stock) {
+    if (cantidad < juegoStock) {
       setCantidad(cantidad + 1);
       setJuegoStock(juegoStock - 1);
     }
