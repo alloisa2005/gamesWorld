@@ -12,7 +12,19 @@ export const generateMetadata = async ({ params }) => {
 
   return {
     title: game.titulo,
-    description: `${game.titulo} - ${game.categoria}`,   
+    description: `${game.titulo} - ${game.categoria}`, 
+    openGraph:{
+      title: game.titulo,
+      description: `${game.titulo} - ${game.categoria}`,
+      images: [
+        {
+          type: "image/png",
+          width: 1200,
+          height: 630,
+          url: game.posterImage,
+        }
+      ]      
+    }        
   }
 }
 
