@@ -22,6 +22,7 @@ export const generateMetadata = async ({ params }) => {
           width: 1200,
           height: 630,
           url: game.posterImage,
+          secure_url: game.posterImage,
         }
       ]      
     }        
