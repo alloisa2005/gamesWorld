@@ -40,7 +40,7 @@ const FavoritosCard = ({ favorito }) => {
 
       <Link
         href={`/detail/${favorito._id}`}
-        className="px-3 py-2 flex flex-1 flex-col gap-2"
+        className="px-3 flex flex-1 flex-col gap-1"
       >
         <p className="text-[15px] font-bold">{cortarTexto(favorito.titulo, 23)}</p>
         <p className="text-sm">
@@ -49,7 +49,7 @@ const FavoritosCard = ({ favorito }) => {
             {favorito.categoria.toUpperCase()}
           </span>
         </p>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col md:flex-row items-start md:justify-between md:items-center">
           <p className="text-md font-bold">$ {separadorMiles(favorito.precio)}</p>
           <RatingBar rating={favorito.rating} />
         </div>        
