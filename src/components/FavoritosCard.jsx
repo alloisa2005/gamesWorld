@@ -49,7 +49,7 @@ const FavoritosCard = ({ favorito }) => {
             {favorito.categoria.toUpperCase()}
           </span>
         </p>
-        <div className="flex flex-col md:flex-row items-start md:justify-between md:items-center">
+        <div className="flex flex-col md:flex-row items-start md:justify-between md:items-center mb-1 md:mb-2">
           <p className="text-md font-bold">$ {separadorMiles(favorito.precio)}</p>
           <RatingBar rating={favorito.rating} />
         </div>        

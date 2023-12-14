@@ -52,7 +52,7 @@ const Menu = () => {
             } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
           >
             Tienda
-          </Link>                    
+          </Link>
           {!session?.user?.email ? (
             <Link
               href="/user/login"

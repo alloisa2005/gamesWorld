@@ -32,7 +32,7 @@ const MenuList = ({ open, handleMenu }) => {
           <AiOutlineClose size={30} className="text-white hover:text-black" />
         </div>
 
-        <nav className="flex flex-col gap-5 px-3 text-white font-bold">
+        <nav className="flex flex-col gap-5 px-3 text-white font-bold font-montserrat">
           <Link
             href="/"
             className={`${

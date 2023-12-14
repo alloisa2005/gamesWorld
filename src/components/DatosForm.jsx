@@ -26,7 +26,7 @@ const DatosForm = () => {
   return (
     <>
       <div className=" mt-4 font-montserrat">
-        <div className="flex items-center gap-10">
+        <div className="flex flex-col md:flex-row items-center gap-1 md:gap-10">
           <Image
             src={session.user.image}
             alt={session.user.nombre}
@@ -35,7 +35,7 @@ const DatosForm = () => {
             className="rounded-full w-[140px] h-[140px] object-cover"
           />
 
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col items-center md:items-start gap-1">
             <p className="text-6xl font-semibold font-caveat">
               {session.user.nombre}
             </p>
