@@ -5,6 +5,11 @@ import { getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
 
+export const metadata = {
+  title: "Menu Administrador | Lista Usuarios",
+  description: "Menu Administrador - Lista Usuarios Page",
+}
+
 const ListaUsuarios = async () => {
 
   const session = await getServerSession(authOptions)  

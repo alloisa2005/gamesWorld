@@ -2,6 +2,11 @@ import TablaMensajes from '@/components/TablaMensajes'
 import { getAllMensajes } from '@/utils/mensajes/mensajes';
 import React from 'react'
 
+export const metadata = {
+  title: "Menu Administrador | Mensajes",
+  description: "Menu Administrador - Mensajes Page",
+}
+
 const Mensajes = async () => {
 
   const mensajes = await getAllMensajes(); 

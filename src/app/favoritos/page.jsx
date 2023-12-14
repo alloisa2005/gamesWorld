@@ -4,6 +4,11 @@ import { redirect } from 'next/navigation'
 import React from 'react'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 
+export const metadata = {
+  title: "Mis Favoritos",
+  description: "Favoritos de usuario Page",
+}
+
 const FavoritosPage = async () => {
 
   const session = await getServerSession(authOptions)  

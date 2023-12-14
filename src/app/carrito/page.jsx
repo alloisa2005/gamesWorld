@@ -8,8 +8,8 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 
 export const metadata = {
-  title: "Cart",
-  description: "Home page",
+  title: "Mi Carrito",
+  description: "Carrito de usuario Page",
 }
 
 const Carrito =  async () => {  

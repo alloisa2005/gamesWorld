@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import Skeleton from "./Skeleton";
 
 export const metadata = {
-  title: "Store",
+  title: "Tienda",
   description: "Home page",
 }
 

@@ -22,7 +22,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   title: {
-    default: 'Home | GamesWorld',
+    default: 'Inicio | GamesWorld',
     template: `%s | GamesWorld`,
   },
   description: 'Video games store',

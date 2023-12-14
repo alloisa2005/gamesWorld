@@ -5,6 +5,11 @@ import { getServerSession } from 'next-auth'
 import { redirect } from 'next/navigation';
 import React from 'react'
 
+export const metadata = {
+  title: "Mis Datos",
+  description: "Datos de usuario Page",
+}
+
 const MisDatos = async () => {  
 
   const session = await getServerSession(authOptions);

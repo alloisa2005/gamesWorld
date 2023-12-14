@@ -4,6 +4,11 @@ import TablaProductos from '@/components/TablaProductos';
 import { getProductos } from '@/utils/juegos/juegos';
 import Link from 'next/link';
 
+export const metadata = {
+  title: "Menu Administrador | Productos",
+  description: "Menu Administrador - Productos Page",
+}
+
 const ListaProductos = async () => {
 
   const juegos = await getProductos();  

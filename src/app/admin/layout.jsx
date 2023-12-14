@@ -3,8 +3,8 @@ import Image from 'next/image'
 import React from 'react'
 
 export const metadata = {
-  title: "Admin",
-  description: "Home page",
+  title: "Menu Administrador",
+  description: "Menu Administrador Page",
 }
 
 const AdminLayout = ({children}) => {

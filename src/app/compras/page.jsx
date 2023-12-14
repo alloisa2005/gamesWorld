@@ -4,6 +4,11 @@ import { redirect } from 'next/navigation'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 import ComprasList from '@/components/ComprasList'
 
+export const metadata = {
+  title: "Mis Compras",
+  description: "Compras de usuario Page",
+}
+
 const MisCompras = async () => {
   const session = await getServerSession(authOptions)  
 
