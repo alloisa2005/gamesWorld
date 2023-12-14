@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend'
-import EmailRegisterTemplate from '@/components/Email-register-template';
+import EmailRegisterTemplate from '@/components/EmailTemplates/Email-register-template';
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 

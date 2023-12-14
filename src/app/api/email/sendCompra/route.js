@@ -1,19 +1,19 @@
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend'
-import EmailRegisterTemplate from '@/components/Email-register-template';
+import EmailCompraTemplate from '@/components/EmailTemplates/Email-compra-template';
 
 const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY);
 
 export const POST = async (req, res) => {
 
-  const { email, nombre, direccion } = await req.json();
+  const { compra, usuario } = await req.json();
 
   try {
     const data = await resend.emails.send({
       from: 'No Reply <onboarding@resend.dev>',
-      to: [email],
+      to: [usuario.email],
       subject: 'GamesWorld - Gracias por su compra',
-      react: EmailRegisterTemplate({ nombre, email, direccion }),
+      react: EmailCompraTemplate({ compra, usuario }),
       text: '',
     });
     
