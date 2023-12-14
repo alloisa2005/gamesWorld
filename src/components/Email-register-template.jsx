@@ -1,5 +1,5 @@
 
-const EmailTemplate = ({ nombre, email, direccion }) => (
+const EmailRegisterTemplate = ({ nombre, email, direccion }) => (
   <div className="">
     <p>¡Hola {nombre}!</p>
     <p>Gracias por registrarte en nuestra web.</p>
@@ -31,4 +31,4 @@ const EmailTemplate = ({ nombre, email, direccion }) => (
   </div>
 );
 
-export default EmailTemplate;
+export default EmailRegisterTemplate;

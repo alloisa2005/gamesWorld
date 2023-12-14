@@ -1,4 +1,6 @@
-const { uploadImageToStorage } = require("../uploadImages");
+import { sendRegisterEmail } from "../mails/sendEmails";
+import { uploadImageToStorage } from "../uploadImages";
+
 
 export const saveUser = async (nombre, email, direccion, password, fileImg) => {  
   
@@ -30,6 +32,8 @@ export const saveUser = async (nombre, email, direccion, password, fileImg) => {
     const data = await response.json();
     return {error:true, errorMsg: data.msg, data: ''};    
   }
+
+  await sendRegisterEmail(email, nombre, direccion);
 
   const data = await response.json(); 
   return {error:false, errorMsg: '', data};
