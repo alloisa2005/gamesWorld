@@ -11,10 +11,12 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import Image from "next/image";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsCoin } from "react-icons/bs";
+import { sendCompraEmail } from "@/utils/mails/sendEmails";
 
 const DetalleCompra = () => {
   const dispatch = useDispatch();
-  const { data: session } = useSession();
+  const { data: session } = useSession();  
+
   const { cart, cartTotalAmount, cartTotalItems } = useSelector(
     (state) => state.cart
   );
@@ -45,6 +47,18 @@ const DetalleCompra = () => {
     });
 
     if (res.ok) {
+
+      await sendCompraEmail(
+        session?.user?.email, 
+        session?.user?.nombre,
+        session?.user?.direccion,
+        cart, 
+        cartTotalItems, 
+        cartTotalAmount, 
+        envio, 
+        montoTotal
+      )
+      
       dispatch(clearCart(session?.user?.email));
       dispatch(getUserCompras(session?.user?.email));
 
