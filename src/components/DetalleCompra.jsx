@@ -59,7 +59,7 @@ const DetalleCompra = () => {
         envio, 
         montoTotal
       )
-      
+      //TODO: Poner un spinner cuando confirma la compra
       dispatch(getUserCart(session?.user?.email))
       dispatch(getUserCompras(session?.user?.email));
 

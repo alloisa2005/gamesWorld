@@ -30,7 +30,13 @@ const EmailCompraTemplate = ({ email, nombre, direccion, cart, cartTotalItems, c
         })
       }
     </ul>
-    <br />    
+    <div>
+      <p style={{fontWeight:'bold'}}>Cantidad de productos: {cartTotalItems}</p>      
+      <p style={{fontWeight:'bold'}}>Envío ($): {envio}</p>
+      <p style={{fontWeight:'bold'}}>El total de su compra es ($): {montoTotal}</p>
+    </div>
+    <br />  
+    <p>Gracias por tu compra, esperamos que disfrutes de nuestros productos.</p>
     <p>El equipo de <span style={{fontWeight:'bold'}}>GamesWorld</span></p>
     <br />
     
