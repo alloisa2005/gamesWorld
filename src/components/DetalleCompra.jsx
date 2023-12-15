@@ -12,22 +12,23 @@ import Image from "next/image";
 import { TbTruckDelivery } from "react-icons/tb";
 import { BsCoin } from "react-icons/bs";
 import { sendCompraEmail } from "@/utils/mails/sendEmails";
+import Spinner from "./Spinner";
 
 const DetalleCompra = () => {
   const dispatch = useDispatch();
   const { data: session } = useSession();  
 
-  const { cart, cartTotalAmount, cartTotalItems } = useSelector(
-    (state) => state.cart
-  );
+  const { cart, cartTotalAmount, cartTotalItems } = useSelector((state) => state.cart);
 
   const [modal, setModal] = useState({ error: false, msg: "" });
   const [modalCompra, setModalCompra] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   let envio = ((cartTotalAmount * 5) / 100).toFixed(0);
   let montoTotal = (cartTotalAmount + (cartTotalAmount * 5) / 100).toFixed(0);
 
   const handleFinalizaCompra = async () => {
+    setLoading(true);
     let envio = ((cartTotalAmount * 5) / 100).toFixed(0);
     let montoTotal = (cartTotalAmount + (cartTotalAmount * 5) / 100).toFixed(0);
 
@@ -62,12 +63,15 @@ const DetalleCompra = () => {
       //TODO: Poner un spinner cuando confirma la compra
       dispatch(getUserCart(session?.user?.email))
       dispatch(getUserCompras(session?.user?.email));
+      
+      setLoading(false);
 
       setModal({
         error: false,
         msg: "Compra realizada con éxito. Recibirá un correo electrónico con los detalles de la compra.",
       });
     }
+    setLoading(false);
     setModalCompra(false);
   };
 
@@ -202,12 +206,15 @@ const DetalleCompra = () => {
               </div>
             </>
 
-            <div className="w-full flex justify-end">
+            <div className="flex justify-end">
               <button
                 onClick={handleFinalizaCompra}
-                className={`rounded-md py-2 px-2 text-center bg-black hover:bg-black/90 text-white hover:cursor-pointer ease-in duration-300`}
+                className={`min-w-[130px] rounded-md py-2 px-2 text-center bg-black hover:bg-black/90 text-white hover:cursor-pointer ease-in duration-300`}
               >
-                <p className="text-sm font-bold">Confirmar</p>
+                {
+                  loading ? <Spinner /> : <p className="text-sm font-bold">Confirmar</p>
+                }
+                
               </button>
             </div>
           </div>
