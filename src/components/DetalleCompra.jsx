@@ -3,10 +3,10 @@
 import { separadorMiles } from "@/utils/separadorMiles";
 import { useSession } from "next-auth/react";
 import { useDispatch, useSelector } from "react-redux";
-import { clearCart } from "@/redux/slices/cartSlice";
+import { getUserCart } from "@/redux/slices/cartSlice";
 import { useState } from "react";
 import MiModal from "./MiModal";
-import { confirmarCompra, getUserCompras } from "@/redux/slices/compraSlice";
+import { getUserCompras } from "@/redux/slices/compraSlice";
 import { AiFillCloseCircle } from "react-icons/ai";
 import Image from "next/image";
 import { TbTruckDelivery } from "react-icons/tb";
@@ -59,7 +59,7 @@ const DetalleCompra = () => {
         montoTotal
       )
       
-      dispatch(clearCart(session?.user?.email));
+      dispatch(getUserCart(session?.user?.email))
       dispatch(getUserCompras(session?.user?.email));
 
       setModal({
