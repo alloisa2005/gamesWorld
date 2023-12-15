@@ -48,6 +48,7 @@ const DetalleCompra = () => {
 
     if (res.ok) {
 
+      // Paso los datos de la compra para mandar mail con el detalle de la misma
       await sendCompraEmail(
         session?.user?.email, 
         session?.user?.nombre,
