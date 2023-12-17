@@ -16,35 +16,26 @@ import Avatar from "./Avatar";
 import { getUserCompras } from "@/redux/slices/compraSlice";
 import { getAllJuegos } from "@/redux/slices/juegosSlice";
 
-
-const Menu = () => {  
+const Menu = () => {
   const dispatch = useDispatch();
-  const { data: session } = useSession();      
+  const { data: session } = useSession();
 
-  useEffect(() => {        
-    if(session?.user?.email) {
-      dispatch(getUserCart(session?.user?.email))
-      dispatch(getFavoritosByUser(session?.user?.email))
-      dispatch(getUserCompras(session?.user?.email))
+  useEffect(() => {
+    if (session?.user?.email) {
+      dispatch(getUserCart(session?.user?.email));
+      dispatch(getFavoritosByUser(session?.user?.email));
+      dispatch(getUserCompras(session?.user?.email));
     }
   }, [dispatch, session?.user?.email]);
 
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const handleMenu = () => setOpen(!open);      
+  const handleMenu = () => setOpen(!open);
 
   return (
     <>
       <nav className="hidden lg:flex items-center gap-5 px-3 text-white font-bold">
         <ul className="flex items-center gap-3">
-          <Link
-            href="/"
-            className={`${
-              pathname === "/" ? "bg-white text-black" : ""
-            } font-montserrat hover:text-black hover:bg-white p-2 rounded-md`}
-          >
-            Inicio
-          </Link>
           <Link
             href="/tienda/categorias/all"
             className={`${
@@ -62,9 +53,9 @@ const Menu = () => {
             >
               LogIn
             </Link>
-          ) : (            
-            <Avatar />                        
-          )}
+          ) : (
+            <Avatar />
+          )}          
         </ul>
       </nav>
       <div className="lg:hidden" onClick={handleMenu}>
