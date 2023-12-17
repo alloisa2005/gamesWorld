@@ -33,6 +33,19 @@ const MenuList = ({ open, handleMenu }) => {
         </div>
 
         <nav className="flex flex-col gap-5 px-3 text-white font-bold font-montserrat">
+          {
+            session?.user?.email &&
+            <div className="flex items-center gap-3">
+            <Image
+              width={50}
+              height={50}
+              className="border-2 border-white w-[42px] h-[42px] rounded-full object-cover"
+              src={session.user.image}
+              alt="Avatar Image"
+            />
+            <p className="text-[13px]">Hola, {session.user.nombre.split(' ')[0]}</p>                
+          </div>
+          }
           <Link
             href="/"
             className={`${
@@ -60,16 +73,7 @@ const MenuList = ({ open, handleMenu }) => {
             </Link>
           ) : (
             <>
-              <div className="flex items-center gap-3">
-                <Image
-                  width={50}
-                  height={50}
-                  className="border-2 border-white w-[42px] h-[42px] rounded-full object-cover"
-                  src={session.user.image}
-                  alt="Avatar Image"
-                />
-                <p>Hola, {session.user.nombre.split(' ')[0]}</p>
-              </div>
+              
               <Link
                 className="hover:cursor-pointer hover:bg-white hover:text-black p-1"
                 href="/carrito"

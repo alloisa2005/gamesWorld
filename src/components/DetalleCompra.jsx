@@ -137,16 +137,16 @@ const DetalleCompra = () => {
 
             {/* Datos Persona */}
             <h2 className="font-semibold text-gray-500 my-4">Usuario</h2>
-            <div className="flex items-center gap-5">
+            <div className="flex flex-col md:flex-row items-center gap-3">
               <Image
                 src={session.user.image}
                 alt={session.user.nombre}
                 width={80}
                 height={80}
-                className="w-[80px] h-[80px] rounded-full object-cover"
+                className="w-[120px] h-[120px]  rounded-full object-cover"
               />
 
-              <div className="">
+              <div className="w-full">
                 <div className="flex items-center gap-2 mt-1">
                   <p className="w-[90px]">Nombre:</p>
                   <p className="font-bold">{session.user.nombre}</p>
@@ -162,7 +162,7 @@ const DetalleCompra = () => {
               </div>
             </div>
 
-            <h2 className="font-semibold text-gray-500 my-4">Detalle Compra</h2>
+            <h2 className="font-semibold text-gray-500 mt-6 mb-3">Detalle Compra</h2>
             <>
               {cart.map((prod) => {
                 if (prod.cantidad > 0) {
