@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import MiModal from "./MiModal";
 import Spinner from "./Spinner";
+import { evaluarPassword } from "@/utils/evaluarPassword";
 
 export const RegisterForm = () => {
 
@@ -51,6 +52,32 @@ export const RegisterForm = () => {
     if (!nombre.trim() || !email.trim() || !direccion.trim() || !password.trim()) {
       setLoading(false);
       setModal({ error: true, msg: "Todos los campos son obligatorios"});
+      return;
+    }
+
+    const fuerzaPassword = evaluarPassword(password);
+    if(fuerzaPassword < 4){
+      setLoading(false);
+      let msjError = "";
+      switch (fuerzaPassword) {
+        case 0:
+          msjError = "La contraseña debe tener al menos 6 caracteres";
+          break;
+        case 1:
+          msjError = "La contraseña debe contener al menos un caracter especial";
+          break;
+        case 2:
+          msjError = "La contraseña debe contener al menos un número";
+          break;
+        case 3:
+          msjError = "La contraseña debe contener al menos una letra";
+          break;        
+        default:
+          msjError = "";
+          break;
+      }
+      
+      setModal({ error: true, msg: msjError});
       return;
     }
 
